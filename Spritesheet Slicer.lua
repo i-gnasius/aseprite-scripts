@@ -64,7 +64,7 @@ if not dialog.data.ok then return end
 function Slicer(data, sprite)
     local self = {}
     self.sprite = sprite
-    self.include_empty = data.empty
+    self.includeEmpty = data.empty
 
     if data.mode == modeBySize then
         self.col = math.floor(sprite.width / data.width)
@@ -83,12 +83,12 @@ function Slicer(data, sprite)
         local layer = sprite.layers[1]
         local first = true
 
-        for y = 0, self.height - 1, 1 do
-            for x = 0, self.width - 1, 1 do
+        for y = 0, self.row - 1, 1 do
+            for x = 0, self.col - 1, 1 do
                 local rect = Rectangle(x * self.width, y * self.height, self.width, self.height)
                 local slice = Image(image, rect)
 
-                if not slice:isEmpty() or self.include_empty then
+                if not slice:isEmpty() or self.includeEmpty then
                     local frame
 
                     if first then
